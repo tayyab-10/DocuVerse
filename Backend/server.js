@@ -1,16 +1,25 @@
 const mongoose = require("mongoose");
 const Document = require("./Model/Document");
+const connectToMongo = require('./db');
+const express = require('express');
+const cors = require('cors');
 
+const app = express();
+const PORT = process.env.PORT || 5000; // Define a port for your Express server
 
+connectToMongo();
+app.use(cors());
+app.use(express.json());
 
-const mongoURI = "mongodb://localhost:27017/DocuVerse";
+// Import and use routes
+app.use('/api/auth', require('./Routes/auth'));
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log("MongoDB connected successfully"))
-  .catch(err => console.error("MongoDB connection error:", err));
+// Start the Express server
+app.listen(PORT, () => {
+  console.log(`Express server running on port ${PORT}`);
+});
 
+// Initialize Socket.io
 const io = require("socket.io")(3001, {
   cors: {
     origin: "http://localhost:3000",
@@ -24,7 +33,7 @@ io.on("connection", (socket) => {
   socket.on("get-document", async (documentId) => {
     const document = await findOrCreateDocument(documentId);
     if (!document) return;
-    
+
     socket.join(documentId);
     socket.emit("load-document", document.data);
 
