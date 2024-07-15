@@ -3,21 +3,26 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { v4 as uuidV4 } from 'uuid';
 import Texteditor from './Components/Texteditor';
 import Login from './Components/Login';
-import signup from './Components/signup';
+import Signup from './Components/Signup';
 import Home from './Components/Home';
+import Navbar from './Components/Navbar';
 
 function App() {
   const [user, setUser] = useState(null);
 
   return (
     <Router>
+      <Navbar
+          title="Notevault"
+          button1="Login"
+          button2="Signup" />
       <Routes>
         {/* Home page route */}
         <Route path="/" element={<Home />} />
         
         {/* Login and Signup routes */}
         <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/signup" element={<signup setUser={setUser} />} />
+        <Route path="/signup" element={<Signup setUser={setUser} />} />
 
         {/* Private route to handle documents with specific IDs */}
         <Route
