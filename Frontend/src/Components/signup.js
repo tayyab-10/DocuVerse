@@ -22,13 +22,11 @@ const Signup = ({ setUser }) => {
       });
 
       const data = await response.json();
- 
 
       if (response.ok) {
-       
         localStorage.setItem('token', data.token);
         setUser({ name });
-        navigate("/home");
+        navigate("/documents");
       } else {
         console.error("Registration failed:", data);
         alert("Registration failed. Please try again.");
@@ -53,25 +51,19 @@ const Signup = ({ setUser }) => {
 
   return (
     <div 
-      style={{ 
-        backgroundImage: `url(${bgImage})`, 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        marginTop:"3rem"
-      }} 
-      className="d-flex align-items-center justify-content-center min-vh-100 bg-danger "
+      style={{ backgroundImage: `url(${bgImage})` }} 
+      className="flex items-center justify-center min-h-screen bg-cover bg-center p-12"
     >
-      <div className="card shadow-lg p-4" style={{ maxWidth: '23rem' }}>
-        <h5 className="text-center mb-4 fw-normal">Create a new Notevault Account</h5>
-        <Button type="default" icon={<GoogleOutlined />} className="mb-3 w-100">
+      <div className="shadow-lg p-6 bg-white rounded-lg max-w-80 mt-8">
+        <h5 className="text-center mb-4 font-normal">Create a new Notevault Account</h5>
+        <Button type="default" icon={<GoogleOutlined />} className="mb-3 w-full">
           Sign up with Google
         </Button>
-        <div className="separator text-center" style={{ display: "flex", alignItems: "center", justifyContent: "center",fontSize: "13px", color: "rgba(102, 102, 102, 1)"}}>
-  <hr className="left-line" style={{ flex: 1 }}/>
-  <span style={{ margin: "2px 8px" }}>Or</span>
-  <hr className="right-line" style={{ flex: 1 }}/>
-</div>
-
+        <div className="flex items-center justify-center text-sm text-gray-600 mb-3">
+          <hr className="flex-1"/>
+          <span className="mx-2">Or</span>
+          <hr className="flex-1"/>
+        </div>
         <Form
           name="signup_form"
           initialValues={{ remember: true }}
@@ -86,6 +78,7 @@ const Signup = ({ setUser }) => {
               placeholder="Name"
               name="name"
               onChange={onChange}
+              className="rounded-md"
             />
           </Form.Item>
           <Form.Item
@@ -97,6 +90,7 @@ const Signup = ({ setUser }) => {
               placeholder="Email"
               name="email"
               onChange={onChange}
+              className="rounded-md"
             />
           </Form.Item>
           <Form.Item
@@ -109,13 +103,14 @@ const Signup = ({ setUser }) => {
               placeholder="Password"
               name="password"
               onChange={onChange}
+              className="rounded-md"
             />
           </Form.Item>
           <Form.Item>
-            <Checkbox onChange={onAgreeChange} className="mb-1" style={{ fontSize: "13px", color: "rgba(102, 102, 102, 1)" }}>
+            <Checkbox onChange={onAgreeChange} className="mb-1 text-sm text-gray-600">
               I agree to the terms and conditions
             </Checkbox>
-            <Checkbox style={{ fontSize: "13px", color: "rgba(102, 102, 102, 1)" }} >
+            <Checkbox className="text-sm text-gray-600">
               Send me Tips and News.
             </Checkbox>
           </Form.Item>
@@ -123,15 +118,15 @@ const Signup = ({ setUser }) => {
             <Button 
               type="primary" 
               htmlType="submit" 
-              className="btn btn-primary w-100"
+              className="btn btn-primary w-full rounded-md"
               disabled={!agree}
             >
               Sign up
             </Button>
           </Form.Item>
           <div className="text-center mt-3">
-            <h7 className='fw-normal'>Already a member ?</h7>
-            <Link to="/login">  Login here!</Link>
+            <span className="font-normal">Already a member?</span>
+            <Link to="/login" className="text-blue-500 hover:underline ml-1">Login here!</Link>
           </div>
         </Form>
       </div>

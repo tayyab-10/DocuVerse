@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <Navbar
-          title="Notevault"
+          title="DocuVerse"
           button1="Login"
           button2="Signup" />
       <Routes>
