@@ -5,25 +5,27 @@ import { Link, useNavigate } from 'react-router-dom';
 import bgImage from "../Assets/bg1.jpg";
 import { GoogleOutlined } from '@ant-design/icons';
 
-const Login = () => {
+const Login = ({setUser}) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    const { password, email } = credentials;
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email: credentials.email, password: credentials.password })
+        body: JSON.stringify({ email, password,})
       });
       const json = await response.json();
       
       if (response.ok) {
-        // Save the auth token and redirect
+      
         localStorage.setItem('token', json.token);
-        navigate("/Tex");
+        setUser({ password });
+        navigate("/documents");
       
       } else {
         alert("Invalid credentials");

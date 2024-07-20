@@ -9,6 +9,7 @@ const Signup = ({ setUser }) => {
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "" });
   const [agree, setAgree] = useState(false);
   const navigate = useNavigate();
+  
 
   const handleSignUp = async () => {
     const { name, password, email } = credentials;

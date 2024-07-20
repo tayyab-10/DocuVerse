@@ -1,8 +1,15 @@
-const{Schema,model} =require("mongoose")
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
-const Document=new Schema({
-    _id:String,
-    data:Object,
-})
+const DocumentSchema = new Schema({
+  _id: {
+    type: String,
+    required: true
+  },
+  data: {
+    type: Object,
+    required: true
+  }
+});
 
-module.exports=model("Document",Document);
+module.exports = model("Document", DocumentSchema);

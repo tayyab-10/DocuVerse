@@ -1,18 +1,22 @@
+const express = require('express');
+const cors = require('cors');
 const mongoose = require("mongoose");
 const Document = require("./Model/Document");
 const connectToMongo = require('./db');
-const express = require('express');
-const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 5000; // Define a port for your Express server
+const PORT = process.env.PORT || 5000;
 
+// Connect to MongoDB
 connectToMongo();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Import and use routes
+// Routes
 app.use('/api/auth', require('./Routes/auth'));
+app.use('/api/docs', require('./Routes/docs'));
 
 // Start the Express server
 app.listen(PORT, () => {
