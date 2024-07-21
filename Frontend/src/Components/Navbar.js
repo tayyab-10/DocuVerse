@@ -13,8 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link, useNavigate } from 'react-router-dom';
-import ProfileImage from "../Assets/Testimonial2.jpg"
-// import "./Notes.css"
+import ProfileImage from "../Assets/Testimonial2.jpg";
 
 const pages = ['Welcome', 'Features', 'Our Story'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -148,7 +147,7 @@ function Navbar(props) {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" component={Link} to={`/${page.toLowerCase()}`}>
+                  <Typography textAlign="center" component={Link} to={`/${page.toLowerCase()}`} sx={{ textDecoration: 'none', color: 'black' }}>
                     {page}
                   </Typography>
                 </MenuItem>
@@ -165,10 +164,10 @@ function Navbar(props) {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'Poppins,Open sans,Arial,sans-serif',
+              fontFamily: 'Poppins, Open sans, Arial, sans-serif',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: '#007aff', // Adjusted color to stay consistent
               textDecoration: 'none',
             }}
           >

@@ -53,7 +53,7 @@ function App() {
           <Route path="/signup" element={<Signup setUser={setUser} />} />
           <Route
             path="/documents/:id"
-            element={user ? <Texteditor user={user} /> : <Navigate to="/login" replace />}
+            element={user ? <Texteditor user={user} /> : ""}
           />
           <Route
             path="/documents"

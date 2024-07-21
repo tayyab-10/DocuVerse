@@ -16,7 +16,7 @@ const Footer = () => {
               </Typography>
             </div>
             <Typography variant="body2" color="inherit" className="mt-3">
-              Notevault offers a user-friendly interface that makes it simple and intuitive to take notes, organize your thoughts, and stay productive.
+              DocuVerse offers a user-friendly interface that makes it simple and intuitive to write documents, organize your thoughts, and stay productive.
             </Typography>
           </Grid>
 
